@@ -10,3 +10,24 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+
+.list-group-item  {
+    align-items: center;
+    margin: auto;
+}
+ul, input{
+    width: 400px;
+}
+
+.btn-light{
+color: white;
+margin-right: auto;
+}
+.separar {
+    display: flex;
+    justify-content: space-between;
+}
+.boton {
+    display: flex;
+    justify-content: end;
+}
