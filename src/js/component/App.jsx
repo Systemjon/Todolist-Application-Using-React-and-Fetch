@@ -2,6 +2,14 @@
 import React, { useState } from 'react';
 //include images into your bundle
 
+//fetch inicio
+
+/*fetch('http://assets.breatheco.de/apis/fake/todos/user', {
+    method: "POST",
+    .then(response => response.json())  // convertir a json
+    .then(json => console.log(json))   //imprimir los datos en la consola
+    .catch(err => console.log('Solicitud fallida', err)) // Capturar errores
+}*/
 
 //create your first component
 export function App () {
