@@ -1,30 +1,62 @@
 //import React from "react";
-import React, { useState } from 'react';
-//include images into your bundle
-
-//fetch inicio
-
-/*fetch('http://assets.breatheco.de/apis/fake/todos/user', {
-    method: "POST",
-    .then(response => response.json())  // convertir a json
-    .then(json => console.log(json))   //imprimir los datos en la consola
-    .catch(err => console.log('Solicitud fallida', err)) // Capturar errores
-}*/
+import React, { useEffect, useState } from 'react';
 
 //create your first component
 export function App () {
 	const [list, setList]= useState([]);
 	const [input, setInput]= useState("");
+    const API_URL="https://assets.breatheco.de/apis/fake/todos/user/" 
+
+    const createUser = () => {  
+        fetch(API_URL+'jflores02', {
+            method: "POST",
+            body: JSON.stringify([]),
+            headers: {"Content-type": "application/json"}
+        })
+        .then(response => {
+            console.log(response)
+            if (response.ok){
+                return response.json()       
+            }
+            new Error("Ocurrio un error con la solicitud")
+        }) 
+        .then(json => console.log(json))
+        .catch(err => console.log(err))
+    }
+
+    const createTask = () => {
+        const newTasks = [...list,{ "label": input, "done": false }]
+        fetch (API_URL+'jflores02', {
+            method: "PUT",
+            body: JSON.stringify(
+                newTasks 
+            ),
+            headers: {"Content-type": "application/json"}
+        })
+        .then(response => {
+            console.log(response)
+            if (response.ok){
+                
+                return response.json()       
+            }
+            new Error("Ocurrio un error en la creacion de la tarea")
+        }) 
+        .then(json => console.log(json))
+        .catch(err => console.log(err))
+    }
+    console.log()
 
     const addTodo = (todo) => {
         const newTodo = {
             id: Math.random(),
             todo: todo,
         };
-
+        
+        createTask()
         //agregar todo a la lista 
         setList([...list, newTodo])
 
+            
         //clear input box
         setInput("")
     };
@@ -33,6 +65,10 @@ export function App () {
         const newList = list.filter((todo) => todo.id !== id);
         setList(newList);
     }
+    useEffect(()=> {
+        //createUser()
+        //createTask()
+    },[])
 
 	return (
 		<div className="text-center">
