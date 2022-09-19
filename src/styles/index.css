@@ -31,3 +31,8 @@ margin-right: auto;
     display: flex;
     justify-content: end;
 }
+.contador {
+    font-size: x-small; 
+    display: flex;
+    justify-content: initial;
+}

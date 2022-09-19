@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 export function App () {
 	const [list, setList]= useState([]);
 	const [input, setInput]= useState("");
+    const [count, setCount] = useState(0);
     const API_URL="https://assets.breatheco.de/apis/fake/todos/user/" 
 
     const createUser = async () => {  
@@ -150,7 +151,7 @@ export function App () {
             	onChange={e => setInput(e.target.value)}
                 onKeyDown={(e) => {
                     if (e.key == "Enter") {
-                        addTodo(input)
+                        addTodo(input, setCount(count + 1))
                     }
                 }}
 			/>
@@ -159,9 +160,10 @@ export function App () {
                 {list.map((todo,i) => (
                     <li className="separar list-group-item" key={i}>
                         <span>{todo.label}</span>
-                        <button className='boton btn btn-light me-0' onClick={() => deleteTodo(i)}>&times;</button>
+                        <button className='boton btn btn-light me-0' onClick={() => deleteTodo(i, setCount(count - 1))}>&times;</button>
                     </li>
                 ))}
+                <span className="contador">{count +" item left"}</span>
             </ul>
             <div>
                 <button className='btn btn-light' onClick={(e) => deleteUser()}>Eliminar todo</button>
