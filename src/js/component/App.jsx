@@ -154,19 +154,23 @@ export function App () {
                         addTodo(input, setCount(count + 1))
                     }
                 }}
+                
 			/>
 			
             <ul className="list-group-item">
                 {list.map((todo,i) => (
                     <li className="separar list-group-item" key={i}>
                         <span>{todo.label}</span>
+                        
                         <button className='boton btn btn-light me-0' onClick={() => deleteTodo(i, setCount(count - 1))}>&times;</button>
                     </li>
                 ))}
                 <span className="contador">{count +" item left"}</span>
             </ul>
             <div>
-                <button className='btn btn-light' onClick={(e) => deleteUser()}>Eliminar todo</button>
+                <button className='btn btn-danger mt-3' onClick={(e) => {deleteUser(), setCount((num)=> {
+                    return num = 0
+                })}}>Eliminar todo</button>
             </div>
 			</div>
 		</div>
