@@ -146,6 +146,7 @@ export function App () {
 			<div className="file-input">
 			<input
 				type="text"
+                placeholder="¿Qué hay que hacer?"
             	className="text"
             	value={input}
             	onChange={e => setInput(e.target.value)}
